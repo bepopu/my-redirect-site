@@ -61,32 +61,53 @@
     /* ===== Page layout ===== */
     body {
       margin: 0;
-      /* push content below the fixed ticker; keep in sync with .ticker height */
       padding-top: 40px;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;   /* stack top → bottom */
+      align-items: center;      /* center horizontally only */
       background-color: #a3fdff;
       font-family: Arial, sans-serif;
     }
     .container {
+      display: grid;
       text-align: center;
-      max-width: 800px;   /* prevents things from getting too wide on desktop */
-      width: 100%;
-      padding: 16px;
+      max-width: 25000px;   /* prevents things from getting too wide on desktop */
+      width: 2500%;
     }
 
     /* ===== Responsive image ===== */
+
+    .hero-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      margin-bottom: 16px;
+    }
+
     .hero-img {
       display: block;
       width: 100%;        /* fill container width */
       max-width: 600px;   /* optional upper cap on large screens */
       height: auto;       /* keep aspect ratio */
       border-radius: 8px;
-      margin: 0 auto 20px;
+      animation: slideInTop 2s ease-out forwards;
+      animation-delay: 0.2s;
     }
 
+    @keyframes slideInTop {
+      from {
+        transform: translateY(-600px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
     /* ===== Side-by-side buttons (always) ===== */
     .btn-row {
       display: flex;
@@ -114,6 +135,35 @@
       user-select: none;
     }
     .btn:hover { background-color: #252928; }
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: clamp(16px, 5vw, 300px);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 16px;
+      background-image: url(gifs/galaxy.gif);
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat-y;
+      padding: 50px 100px;
+      justify-items: center;
+      align-items: center;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+    .g-title p {
+      font-size: 75px;
+      font-weight: 800;
+      color: black;
+      -webkit-text-stroke: 2px rgb(255, 255, 255);
+    }
   </style>
 </head>
 <body>
@@ -132,19 +182,43 @@
   </div>
 
   <div class="container">
-    <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
+
+    <div class="hero-row">
+      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
+      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
+      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
+      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
+      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
+    </div>
 
     <div class="btn-row">
-      <a href="discord-redirect.html" class="btn">Discord</a>
-      <a href="twitter-redirect.html" class="btn">Twitter</a>
-      <a href="https://forms.gle/iTN4ixAGCgRApEXZ7" class="btn">Commission Form</a>
+      <a href="discord-redirect.html">
+        <img src="icons/discord.webp" width="150" >
+    </a>
+      <a href="twitter-redirect.html">
+        <img src="icons/X.webp" width="150">
+      </a>
     </div>
-    <div class="content">
-      <p>Cashapp: $zdeardeer</p>
-      <p>Paypal: bepopuart@gmail.com</p> 
-    </div>
+
+  </div>
+
+  <div class="g-title">
+    <p>GALLERY</p>
+  </div>
+
+  <div class="gallery">
+    <img src="gallery/cover.png">
+    <img src="gallery/israel.png">
+    <img src="gallery/kyuumakuma_spkl.png">
+    <img src="gallery/on_kirn_shaded.png">
+    <img src="gallery/osaker.png">
+    <img src="gallery/peak.png">
+    <img src="gallery/eris_found_you.png">
+    <img src="gallery/foxicafe.png">
+    <img src="gallery/guysfriend1.png">
+    <img src="gallery/Illustration4.png">
+    <img src="gallery/Illustration5.png">
   </div>
 
 </body>
 </html>
-
