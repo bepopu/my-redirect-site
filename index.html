@@ -30,8 +30,8 @@
       display: flex;
       align-items: center;
       overflow: hidden;
-      background: #a3fdff;
-      color: #a3fdff;
+      background: #c07dff;
+      color: #c07dff;
       border-bottom: 1px solid rgba(255,255,255,0.15);
       z-index: 9999;
     }
@@ -66,14 +66,23 @@
       display: flex;
       flex-direction: column;   /* stack top → bottom */
       align-items: center;      /* center horizontally only */
-      background-color: #a3fdff;
+      background-color: #c07dff;
       font-family: Arial, sans-serif;
+    }
+    .container-bg {
+      width: 100%;
+      background-image: url(gifs/galaxy.gif);
+      background-repeat: repeat-x;
+      background-position: center;
+      background-size: 2000px;
     }
     .container {
       display: grid;
       text-align: center;
-      max-width: 25000px;   /* prevents things from getting too wide on desktop */
-      width: 2500%;
+      width: 100%;
+      max-width: 1200px;   /* sane width */
+      margin: 0 auto;      /* center horizontally */
+      padding: 50px;
     }
 
     /* ===== Responsive image ===== */
@@ -86,19 +95,32 @@
       margin-bottom: 16px;
     }
 
-    .hero-img {
+   .hero-img {
       display: block;
-      width: 100%;        /* fill container width */
-      max-width: 600px;   /* optional upper cap on large screens */
+      width: clamp(120px, 18vw, 220px);
+      aspect-ratio: 1 / 1;
       height: auto;       /* keep aspect ratio */
       border-radius: 8px;
-      animation: slideInTop 2s ease-out forwards;
-      animation-delay: 0.2s;
+      object-fit: cover;
+      animation: 
+        worm 3s linear infinite;
+      will-change: transform;
     }
+
+    .hero-item {
+      opacity: 0;
+      animation: slideInTop 2s ease-out forwards;
+    }
+
+    .hero-item:nth-child(1) .hero-img { animation-delay: -0.0s; }
+    .hero-item:nth-child(2) .hero-img { animation-delay: -0.4s; }
+    .hero-item:nth-child(3) .hero-img { animation-delay: -0.8s; }
+    .hero-item:nth-child(4) .hero-img { animation-delay: -1.2s; }
+    .hero-item:nth-child(5) .hero-img { animation-delay: -1.6s; }
 
     @keyframes slideInTop {
       from {
-        transform: translateY(-600px);
+        transform: translateY(-200px);
         opacity: 0;
       }
 
@@ -108,6 +130,17 @@
       }
     }
     
+    @keyframes worm{
+      0%, 100% { transform: translateY(0); }
+      25%      { transform: translateY(-18px); }
+      50%      { transform: translateY(0); }
+      75%      { transform: translateY(18px); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+    .hero-row .hero-img{ animation: none; }
+    }
+
     /* ===== Side-by-side buttons (always) ===== */
     .btn-row {
       display: flex;
@@ -145,7 +178,7 @@
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 16px;
       background-image: url(gifs/galaxy.gif);
-      background-size: cover;
+      background-size: 2000px;
       background-position: center;
       background-repeat: repeat-y;
       padding: 50px 100px;
@@ -158,6 +191,7 @@
       object-fit: cover;
       display: block;
     }
+
     .g-title p {
       font-size: 75px;
       font-weight: 800;
@@ -181,31 +215,34 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container-bg">
 
-    <div class="hero-row">
-      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
-      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
-      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
-      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
-      <img class="hero-img" src="pfp.jpg" alt="Bepopu Art profile image">
-    </div>
+    <div class="container">
 
-    <div class="btn-row">
-      <a href="discord-redirect.html">
-        <img src="icons/discord.webp" width="150" >
-    </a>
-      <a href="twitter-redirect.html">
-        <img src="icons/X.webp" width="150">
+      <div class="hero-row">
+        <div class="hero-item"><img class="hero-img" src="gifs/dance.gif" alt=""></div>
+        <div class="hero-item"><img class="hero-img" src="gifs/dance.gif" alt=""></div>
+        <div class="hero-item"><img class="hero-img" src="gifs/dance.gif" alt=""></div>
+        <div class="hero-item"><img class="hero-img" src="gifs/dance.gif" alt=""></div>
+        <div class="hero-item"><img class="hero-img" src="gifs/dance.gif" alt=""></div>
+      </div>
+
+      <div class="btn-row">
+        <a href="discord-redirect.html">
+          <img src="icons/discord.webp" width="150" >
       </a>
-    </div>
+        <a href="twitter-redirect.html">
+          <img src="icons/X.webp" width="150">
+        </a>
+      </div>
 
+    </div>
   </div>
 
   <div class="g-title">
     <p>GALLERY</p>
   </div>
-
+  
   <div class="gallery">
     <img src="gallery/cover.png">
     <img src="gallery/israel.png">
