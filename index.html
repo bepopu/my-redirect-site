@@ -89,7 +89,7 @@
       justify-content: center;
       gap: clamp(8px, 2vw, 16px);
       flex-wrap: nowrap;              /* KEY mobile fix */
-      margin-bottom: clamp(12px, 4vw, 28px);
+      margin-bottom: clamp(12px, 10vw, 100px);
     }
 
    .hero-img {
@@ -148,6 +148,11 @@
       overflow-x: auto;   /* allow horizontal scroll if a very narrow phone */
       padding: 4px;       /* breathing room for scrollbars on tiny screens */
     }
+
+    .btn-row img {
+      width: clamp(20px, 15vw, 150px);
+    }
+
     .btn {
       display: inline-flex;
       justify-content: center;
@@ -232,10 +237,10 @@
 
       <div class="btn-row">
         <a href="discord-redirect.html">
-          <img src="icons/discord.webp" width="150" >
+          <img src="icons/discord.webp">
       </a>
         <a href="twitter-redirect.html">
-          <img src="icons/X.webp" width="150">
+          <img src="icons/X.webp">
         </a>
       </div>
 
